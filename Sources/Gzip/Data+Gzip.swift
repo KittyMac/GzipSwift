@@ -28,7 +28,9 @@
 
 import struct Foundation.Data
 
-#if os(Linux) || os(Android)
+#if os(Windows)
+    import zlibWindows
+#elseif os(Linux) || os(Android)
     import zlibLinux
 #else
     import zlib

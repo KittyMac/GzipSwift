@@ -1,0 +1,6 @@
+module zlibWindows [system] {
+    header "zlib.h"
+    header "zconf.h"
+    link "z"
+    export *
+}
