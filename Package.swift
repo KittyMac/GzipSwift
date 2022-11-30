@@ -5,7 +5,7 @@ import PackageDescription
 let package = Package(
     name: "Gzip",
     products: [
-        .library(name: "Gzip", targets: ["Gzip"]),
+        .library(name: "Gzip", type: .dynamic, targets: ["Gzip"]),
     ],
     targets: [
         .target(name: "Gzip", dependencies: ["system-zlib"]),
