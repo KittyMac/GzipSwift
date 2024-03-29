@@ -26,6 +26,8 @@
  THE SOFTWARE.
  */
 
+#if !os(Windows)
+
 import struct Foundation.Data
 
 #if os(Linux) || os(Android)
@@ -307,3 +309,5 @@ private enum DataSize {
     static let chunk = 1 << 14
     static let stream = MemoryLayout<z_stream>.size
 }
+
+#endif

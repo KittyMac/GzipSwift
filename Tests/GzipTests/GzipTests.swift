@@ -62,7 +62,18 @@ final class GzipTests: XCTestCase {
         XCTAssertFalse(zeroLengthData.isGzipped)
     }
     
+    func testFileDecompression() throws {
+        
+        let url = self.bundleFile(name: "test.txt.gz")
+        let data = try Data(contentsOf: url)
+        let uncompressed = try data.gunzipped()
+        
+        XCTAssertTrue(data.isGzipped)
+        XCTAssertEqual(String(data: uncompressed, encoding: .utf8), "test")
+    }
+
     
+    #if !os(Windows)
     func testWrongUngzip() {
         
         // data not compressed
@@ -88,17 +99,6 @@ final class GzipTests: XCTestCase {
                              try data.gzipped(level: .bestCompression).count)
     }
     
-    
-    func testFileDecompression() throws {
-        
-        let url = self.bundleFile(name: "test.txt.gz")
-        let data = try Data(contentsOf: url)
-        let uncompressed = try data.gunzipped()
-        
-        XCTAssertTrue(data.isGzipped)
-        XCTAssertEqual(String(data: uncompressed, encoding: .utf8), "test")
-    }
-
     func testDecompressionWithNoHeaderAndTrailer() throws {
         
         let encoded = """
@@ -115,6 +115,7 @@ final class GzipTests: XCTestCase {
         XCTAssertEqual(json?.first, "{")
         XCTAssertEqual(json?.last, "}")
     }
+    #endif
 }
 
 
