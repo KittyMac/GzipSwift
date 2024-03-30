@@ -102,10 +102,7 @@ extension Data {
         guard !self.isEmpty else {
             return Data()
         }
-        if isGzipped {
-            return try GzipArchive.archive(data: self)
-        }
-        return try ZlibArchive.unarchive(archive: self)
+        return try GzipArchive.archive(data: self)
     }
     
     
@@ -127,7 +124,11 @@ extension Data {
         guard !self.isEmpty else {
             return Data()
         }
-        return try GzipArchive.unarchive(archive: self)
+        if isGzipped {
+            return try GzipArchive.unarchive(archive: self)
+        }
+        return try ZlibArchive.unarchive(archive: self)
+
     }
     
 }
