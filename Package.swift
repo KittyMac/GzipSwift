@@ -2,7 +2,7 @@
 
 import PackageDescription
 
-#if os(Windows)
+#if true
 
 let package = Package(
     name: "Gzip",

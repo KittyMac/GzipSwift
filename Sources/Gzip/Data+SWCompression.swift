@@ -26,7 +26,7 @@
  THE SOFTWARE.
  */
 
-#if os(Windows)
+#if true
 
 import SWCompression
 

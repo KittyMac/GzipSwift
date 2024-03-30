@@ -73,7 +73,7 @@ final class GzipTests: XCTestCase {
     }
 
     
-    #if !os(Windows)
+    #if true
     func testWrongUngzip() {
         
         // data not compressed
